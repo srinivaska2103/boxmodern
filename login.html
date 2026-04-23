@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" x-data="authApp()" :class="{ 'dark': darkMode }" :dir="isRtl ? 'rtl' : 'ltr'">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230EA5E9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 7.7c0-.6-.4-1.2-.8-1.5l-8.5-4.6c-.4-.2-1-.2-1.4 0l-8.5 4.6c-.4.3-.8.9-.8 1.5v8.5c0 .6.4 1.2.8 1.5l8.5 4.6c.4.2 1 .2 1.4 0l8.5-4.6c.4-.3.8-.9.8-1.5V7.7z'/%3E%3Cpolyline points='2.1 7.7 12 13 21.9 7.7'/%3E%3Cline x1='12' y1='22.8' x2='12' y2='13'/%3E%3C/svg%3E">
+    <title>Login | BoxModern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { primary: '#0ea5e9' }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+        /* Prevent bounce and scroll on mobile */
+        html, body { 
+            overflow: hidden; 
+            height: 100%; 
+            position: fixed; 
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <header class="absolute top-0 w-full p-6 flex justify-between items-center z-50">
+       <a href="index.html">
+ <div class="flex items-center gap-2">
+            <div class="bg-primary p-1.5 rounded text-white">
+                <i data-lucide="container" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">BoxModern</span>
+        </div>
+       </a>
+       
+
+        <div class="flex gap-3">
+            <button @click="toggleTheme()" class="p-2 rounded-xl bg-white dark:bg-gray-900 shadow-sm border border-gray-200 dark:border-gray-800 hover:text-primary transition-all">
+                <i data-lucide="sun" x-show="!darkMode" class="w-5 h-5"></i>
+                <i data-lucide="moon" x-show="darkMode" class="w-5 h-5"></i>
+            </button>
+            <button @click="toggleRtl()" class="px-3 py-2 rounded-xl bg-white dark:bg-gray-900 shadow-sm border border-gray-200 dark:border-gray-800 text-xs font-bold transition-all">
+                <span x-text="isRtl ? 'LTR' : 'RTL'"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex items-center justify-center h-full w-full px-4">
+        
+        <div class="w-full max-w-[400px] max-h-[90vh] overflow-y-auto no-scrollbar bg-white dark:bg-gray-900 p-6 md:p-10 rounded-[2.5rem] shadow-2xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-800 mt-16 lg:mt-0">
+            
+            <div class="text-center mb-6">
+                <h1 class="text-2xl md:text-3xl font-black mb-2">Welcome Back</h1>
+                <p class="text-gray-500 dark:text-gray-400 text-xs md:text-sm">Please sign in to your account.</p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <button class="flex justify-center items-center py-2.5 border border-gray-200 dark:border-gray-700 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.904 3.16-2.032 4.288-1.128 1.128-2.8 2.032-5.808 2.032-4.8 0-8.712-3.888-8.712-8.712s3.912-8.712 8.712-8.712c2.6 0 4.504.992 5.904 2.304l2.304-2.304C18.592 1.096 15.808 0 12.48 0 6.48 0 1.584 4.896 1.584 10.92s4.896 10.92 10.896 10.92c3.24 0 5.696-1.064 7.6-3.04 1.952-1.952 2.568-4.704 2.568-6.912 0-.664-.048-1.288-.144-1.84h-10.008z"/></svg>
+                </button>
+                <button class="flex justify-center items-center py-2.5 border border-gray-200 dark:border-gray-700 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.51 12.09 1.002 1.44 2.188 3.054 3.726 3.004 1.482-.06 2.041-.956 3.828-.956s2.3.956 3.856.931c1.612-.026 2.636-1.446 3.628-2.893 1.139-1.676 1.611-3.295 1.638-3.382-.034-.015-3.149-1.208-3.181-4.785-.027-2.984 2.454-4.417 2.566-4.478-1.393-2.041-3.535-2.274-4.288-2.324-1.89-.153-3.69 1.154-4.654 1.154zM15.856 4.413c1.082-1.31 1.81-3.125 1.61-4.943-1.56.063-3.451 1.04-4.57 2.348-.998 1.154-1.87 3.018-1.636 4.79 1.741.135 3.513-.884 4.596-2.195z"/></svg>
+                </button>
+                <button class="flex justify-center items-center py-2.5 border border-gray-200 dark:border-gray-700 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
+                    <svg class="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </button>
+            </div>
+
+            <div class="relative flex items-center justify-center mb-6">
+                <hr class="w-full border-gray-100 dark:border-gray-800">
+                <span class="absolute px-4 bg-white dark:bg-gray-900 text-[10px] text-gray-400 font-bold uppercase tracking-widest">Or login with</span>
+            </div>
+
+            <form action="#" @submit.prevent class="space-y-4">
+                <div>
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1 mb-1.5 block">Email</label>
+                    <input type="email" placeholder="hello@boxmodern.com" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white text-sm" required>
+                </div>
+
+                <div x-data="{ show: false }">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1 mb-1.5 block">Password</label>
+                    <div class="relative">
+                        <input :type="show ? 'text' : 'password'" placeholder="••••••••" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all dark:text-white text-sm" required>
+                        <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
+                            <i data-lucide="eye" x-show="!show" class="w-4 h-4"></i>
+                            <i data-lucide="eye-off" x-show="show" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="w-3.5 h-3.5 rounded border-gray-300 text-primary focus:ring-primary">
+                        <span class="text-gray-500 dark:text-gray-400 transition-colors">Remember me</span>
+                    </label>
+                    <a href="#" class="text-primary font-bold hover:underline">Forgot?</a>
+                </div>
+
+                <button type="submit" class="w-full bg-primary text-white font-bold py-3.5 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.01] active:scale-[0.98] transition-all text-sm">
+                    Sign In
+                </button>
+            </form>
+
+            <p class="text-center mt-6 text-xs text-gray-500">
+                New here? <a href="regesiter.html" class="text-primary font-bold hover:underline">Create an account</a>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        function authApp() {
+            return {
+                darkMode: localStorage.getItem('dark-mode') === 'true',
+                isRtl: localStorage.getItem('is-rtl') === 'true',
+
+                toggleTheme() {
+                    this.darkMode = !this.darkMode;
+                    localStorage.setItem('dark-mode', this.darkMode);
+                    this.$nextTick(() => { lucide.createIcons(); });
+                },
+
+                toggleRtl() {
+                    this.isRtl = !this.isRtl;
+                    localStorage.setItem('is-rtl', this.isRtl);
+                },
+
+                init() {
+                    lucide.createIcons();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

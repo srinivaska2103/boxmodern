@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" x-data="authApp()" :class="{ 'dark': darkMode }" :dir="isRtl ? 'rtl' : 'ltr'">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230EA5E9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 7.7c0-.6-.4-1.2-.8-1.5l-8.5-4.6c-.4-.2-1-.2-1.4 0l-8.5 4.6c-.4.3-.8.9-.8 1.5v8.5c0 .6.4 1.2.8 1.5l8.5 4.6c.4.2 1 .2 1.4 0l8.5-4.6c.4-.3.8-.9.8-1.5V7.7z'/%3E%3Cpolyline points='2.1 7.7 12 13 21.9 7.7'/%3E%3Cline x1='12' y1='22.8' x2='12' y2='13'/%3E%3C/svg%3E">
+    <title>404 - Page Not Found | BoxModern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { primary: '#0ea5e9' }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+        /* Strict Non-Scrollable Mobile View */
+        html, body { 
+            overflow: hidden; 
+            height: 100%; 
+            position: fixed; 
+            width: 100%;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <header class="absolute top-0 w-full p-6 flex justify-between items-center z-50">
+       <a href="index.html">
+ <div class="flex items-center gap-2">
+            <div class="bg-primary p-1.5 rounded text-white">
+                <i data-lucide="container" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">BoxModern</span>
+        </div>
+       </a>
+       
+
+        <div class="flex gap-3">
+            <button @click="toggleTheme()" class="p-2 rounded-xl bg-white dark:bg-gray-900 shadow-sm border border-gray-200 dark:border-gray-800 hover:text-primary transition-all">
+                <i data-lucide="sun" x-show="!darkMode" class="w-5 h-5"></i>
+                <i data-lucide="moon" x-show="darkMode" class="w-5 h-5"></i>
+            </button>
+            <button @click="toggleRtl()" class="px-3 py-2 rounded-xl bg-white dark:bg-gray-900 shadow-sm border border-gray-200 dark:border-gray-800 text-xs font-bold transition-all">
+                <span x-text="isRtl ? 'LTR' : 'RTL'"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex items-center justify-center h-full w-full px-6">
+        <div class="text-center">
+            <div class="relative inline-block mb-8">
+                <h1 class="text-[120px] md:text-[180px] font-black leading-none tracking-tighter text-gray-200 dark:text-gray-800">
+                    404
+                </h1>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="bg-primary/10 backdrop-blur-sm p-4 rounded-3xl border border-primary/20 rotate-12">
+                        <i data-lucide="施工-cone" class="w-12 h-12 text-primary"></i>
+                        <script>document.write('<i data-lucide="construction" class="w-10 h-10 text-primary"></i>')</script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-md mx-auto space-y-6">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white">Lost in Transit?</h2>
+                <p class="text-gray-500 dark:text-gray-400 font-medium">
+                    The module you're looking for has been relocated or doesn't exist. Let's get you back to the main site.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="index.html" class="w-full sm:w-auto bg-primary text-white font-bold px-10 py-4 rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="home" class="w-5 h-5"></i>
+                        Back to Home
+                    </a>
+                    <a href="contact.html" class="w-full sm:w-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-bold px-10 py-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all flex items-center justify-center gap-2">
+                        Report Issue
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-100 dark:bg-gray-900">
+        <div class="h-full bg-primary w-1/3 animate-[progress_3s_infinite_linear]"></div>
+    </div>
+
+    <style>
+        @keyframes progress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300%); }
+        }
+    </style>
+
+    <script>
+        function authApp() {
+            return {
+                darkMode: localStorage.getItem('dark-mode') === 'true',
+                isRtl: localStorage.getItem('is-rtl') === 'true',
+
+                toggleTheme() {
+                    this.darkMode = !this.darkMode;
+                    localStorage.setItem('dark-mode', this.darkMode);
+                    this.$nextTick(() => { lucide.createIcons(); });
+                },
+
+                toggleRtl() {
+                    this.isRtl = !this.isRtl;
+                    localStorage.setItem('is-rtl', this.isRtl);
+                },
+
+                init() {
+                    lucide.createIcons();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
