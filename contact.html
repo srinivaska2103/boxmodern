@@ -29,7 +29,7 @@
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
 
-    <nav class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+     <nav class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-20 items-center">
         <a href="index.html">
@@ -91,10 +91,7 @@
         </div>
 
         <div class="lg:hidden flex items-center gap-2">
-            <button @click="toggleTheme()" class="p-2 rounded-full">
-                <i data-lucide="sun" x-show="!darkMode" class="w-5 h-5"></i>
-                <i data-lucide="moon" x-show="darkMode" class="w-5 h-5"></i>
-            </button>
+           
             <button @click="mobileMenu = !mobileMenu" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 <i data-lucide="menu" x-show="!mobileMenu" class="w-6 h-6"></i>
                 <i data-lucide="x" x-show="mobileMenu" class="w-6 h-6"></i>
@@ -136,94 +133,114 @@
 
     <hr class="my-4 border-gray-100 dark:border-gray-800">
 
-    <div class="flex flex-col gap-4 px-2">
-        <button @click="toggleRtl()" class="flex items-center gap-2 py-2 text-gray-600 dark:text-gray-300 font-medium">
-            <i data-lucide="languages" class="w-5 h-5"></i> 
-            <span>Switch to </span>
-            <span class="font-bold text-primary" x-text="isRtl ? 'LTR' : 'RTL'"></span>
+   <div class="flex flex-col gap-5 px-4 py-6 bg-white dark:bg-black rounded-[2rem] border border-gray-100 dark:border-zinc-800 shadow-xl">
+    
+    <!-- Utility Row: Language & Theme -->
+    <div class="flex items-center justify-between px-2 mb-2">
+        <button @click="toggleRtl()" class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors">
+            <i data-lucide="languages" class="w-4 h-4"></i> 
+            <span>Mode:</span>
+            <span class="text-primary" x-text="isRtl ? 'RTL' : 'LTR'"></span>
         </button>
-        
+
+        <!-- Theme Toggle: Enhanced for visibility -->
+        <button @click="toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-zinc-900 border border-transparent dark:border-zinc-800 text-gray-600 dark:text-zinc-400 hover:border-primary/50 transition-all">
+            <i data-lucide="sun" x-show="!darkMode" class="w-5 h-5"></i>
+            <i data-lucide="moon" x-show="darkMode" class="w-5 h-5"></i>
+        </button>
+    </div>
+
+    <!-- Actions -->
+    <div class="space-y-3">
         <a href="login.html" 
-           :class="activePath.includes('login.html') ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
-           class="text-center py-3 border border-gray-200 dark:border-gray-700 rounded-xl font-semibold transition-colors">
-           Login
+           :class="activePath.includes('login.html') ? 'bg-gray-200 dark:bg-zinc-700 text-primary' : 'bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white'"
+           class="flex items-center justify-center py-4 border border-gray-100 dark:border-zinc-800 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:border-primary/30">
+            Login
         </a>
         
         <a href="booknow.html" 
-           class="text-center py-3 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
-           Book Now
+           class="flex items-center justify-center py-4 bg-primary text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-primary/20 active:scale-95 transition-all">
+            Book Now
         </a>
     </div>
+</div>
 </div>
     </nav>
 <section 
     x-data="{ loaded: false }" 
     x-init="setTimeout(() => loaded = true, 100)"
-    class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-500"
+    class="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-white dark:bg-black transition-colors duration-500"
 >
-  <div class="absolute inset-0 z-0">
-    <div class="absolute inset-0 bg-white/10 dark:bg-gray-950/30 z-10"></div>
-    
-    <img 
-        src="assets/Modern Container Home Architecture" 
-        class="w-full h-full object-cover transition-transform duration-[10000ms] ease-out"
-        :class="loaded ? 'scale-110' : 'scale-100'"
-        alt="Modern Container Home Architecture"
-    >
-    
-    <div class="absolute inset-0 z-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] dark:opacity-[0.05]"></div>
-    
-    <div class="absolute inset-0 z-20 bg-gradient-to-tr from-white/40 via-transparent to-transparent dark:from-gray-950/60"></div>
-</div>
+    <!-- Background Image & Overlays -->
+    <div class="absolute inset-0 z-0">
+        <!-- 1. Primary Dark Scrim for Readability -->
+        <div class="absolute inset-0 bg-black/60 dark:bg-black/70 z-10"></div>
+        
+        <img 
+            src="assets/Modern Container Home Architecture" 
+            class="w-full h-full object-cover transition-transform duration-[10000ms] ease-out"
+            :class="loaded ? 'scale-110' : 'scale-100'"
+            alt="Modern Container Home Architecture"
+        >
+        
+        <!-- 2. Texture Overlay (Subtle Technical Grid) -->
+        <div class="absolute inset-0 z-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05] dark:opacity-[0.08]"></div>
+        
+        <!-- 3. Gradient Scrim (Focus on Text Area) -->
+        <div class="absolute inset-0 z-20 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+    </div>
 
+    <!-- Content -->
     <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
         <div class="max-w-4xl">
-    <div 
-        class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/20 text-white text-xs md:text-sm font-bold uppercase tracking-widest mb-8 border border-white/20 backdrop-blur-md transition-all duration-700 transform"
-        :class="loaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'"
-    >
-        <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-        </span>
-        Modular Architecture 2.0
-    </div>
+            <!-- Badge -->
+            <div 
+                class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-primary/30 text-white text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mb-8 border border-white/20 backdrop-blur-md transition-all duration-700 transform"
+                :class="loaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'"
+            >
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                </span>
+                Modular Architecture 2.0
+            </div>
 
-    <h1 
-        class="text-4xl sm:text-6xl lg:text-8xl font-black leading-[1.05] mb-8 tracking-tighter text-white drop-shadow-2xl transition-all duration-1000 delay-300 transform"
-        :class="loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'"
-    >
-        Smart Living <br class="hidden md:block">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-300 to-white bg-[length:200%_auto] animate-[gradient_4s_linear_infinite]">
-            Starts Here
-        </span>
-    </h1>
+            <!-- Headline -->
+            <h1 
+                class="text-5xl sm:text-7xl lg:text-9xl font-black leading-[0.9] mb-10 tracking-tighter text-white drop-shadow-2xl transition-all duration-1000 delay-300 transform"
+                :class="loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'"
+            >
+                Smart Living <br class="hidden md:block">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-sky-300 to-white bg-[length:200%_auto] animate-[gradient_4s_linear_infinite]">
+                    Starts Here
+                </span>
+            </h1>
 
-    <p 
-        class="text-lg md:text-2xl text-white/80 mb-12 leading-relaxed font-medium max-w-2xl transition-all duration-1000 delay-500 transform"
-        :class="loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'"
-    >
-        Custom container homes & tiny houses engineered for sustainability, 
-        affordability, and modern comfort. Delivered anywhere.
-    </p>
-    
-    <div 
-        class="flex flex-col sm:flex-row items-center gap-5 transition-all duration-1000 delay-700 transform"
-        :class="loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'"
-    >
-        <a href="booknow.html" class="w-full sm:w-auto bg-primary hover:bg-sky-500 text-white px-10 py-5 rounded-2xl font-black text-center shadow-2xl shadow-primary/40 transition-all transform hover:-translate-y-1 active:scale-95 group flex items-center justify-center gap-3">
-            Start My Build 
-            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-        </a>
-        
-        <a href="gallery.html" class="w-full sm:w-auto bg-white/10 backdrop-blur-xl border border-white/20 text-white px-10 py-5 rounded-2xl font-black text-center hover:bg-white/20 transition-all shadow-xl flex items-center justify-center gap-3">
-            View Models
-        </a>
+            <!-- Paragraph -->
+            <p 
+                class="text-lg md:text-2xl text-white/90 mb-12 leading-relaxed font-medium max-w-2xl transition-all duration-1000 delay-500 transform"
+                :class="loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'"
+            >
+                Custom container homes & tiny houses engineered for sustainability, 
+                affordability, and modern comfort. Delivered anywhere in India.
+            </p>
+            
+            <!-- Buttons -->
+            <div 
+                class="flex flex-col sm:flex-row items-center gap-5 transition-all duration-1000 delay-700 transform"
+                :class="loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'"
+            >
+                <a href="booknow.html" class="w-full sm:w-auto bg-primary hover:bg-sky-500 text-white px-12 py-5 rounded-2xl font-black uppercase text-xs tracking-widest text-center shadow-2xl shadow-primary/40 transition-all transform hover:-translate-y-1 active:scale-95 group flex items-center justify-center gap-3">
+                    Start My Build 
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                
+                <a href="gallery.html" class="w-full sm:w-auto bg-white/10 backdrop-blur-xl border border-white/20 text-white px-12 py-5 rounded-2xl font-black uppercase text-xs tracking-widest text-center hover:bg-white/20 transition-all shadow-xl flex items-center justify-center gap-3">
+                    View Models
+                </a>
+            </div>
+        </div>
     </div>
-</div>
-    </div>
-
-   
 </section>
 
 <style>

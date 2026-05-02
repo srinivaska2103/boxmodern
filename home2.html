@@ -91,10 +91,7 @@
         </div>
 
         <div class="lg:hidden flex items-center gap-2">
-            <button @click="toggleTheme()" class="p-2 rounded-full">
-                <i data-lucide="sun" x-show="!darkMode" class="w-5 h-5"></i>
-                <i data-lucide="moon" x-show="darkMode" class="w-5 h-5"></i>
-            </button>
+           
             <button @click="mobileMenu = !mobileMenu" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 <i data-lucide="menu" x-show="!mobileMenu" class="w-6 h-6"></i>
                 <i data-lucide="x" x-show="mobileMenu" class="w-6 h-6"></i>
@@ -136,24 +133,37 @@
 
     <hr class="my-4 border-gray-100 dark:border-gray-800">
 
-    <div class="flex flex-col gap-4 px-2">
-        <button @click="toggleRtl()" class="flex items-center gap-2 py-2 text-gray-600 dark:text-gray-300 font-medium">
-            <i data-lucide="languages" class="w-5 h-5"></i> 
-            <span>Switch to </span>
-            <span class="font-bold text-primary" x-text="isRtl ? 'LTR' : 'RTL'"></span>
+   <div class="flex flex-col gap-5 px-4 py-6 bg-white dark:bg-black rounded-[2rem] border border-gray-100 dark:border-zinc-800 shadow-xl">
+    
+    <!-- Utility Row: Language & Theme -->
+    <div class="flex items-center justify-between px-2 mb-2">
+        <button @click="toggleRtl()" class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors">
+            <i data-lucide="languages" class="w-4 h-4"></i> 
+            <span>Mode:</span>
+            <span class="text-primary" x-text="isRtl ? 'RTL' : 'LTR'"></span>
         </button>
-        
+
+        <!-- Theme Toggle: Enhanced for visibility -->
+        <button @click="toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-zinc-900 border border-transparent dark:border-zinc-800 text-gray-600 dark:text-zinc-400 hover:border-primary/50 transition-all">
+            <i data-lucide="sun" x-show="!darkMode" class="w-5 h-5"></i>
+            <i data-lucide="moon" x-show="darkMode" class="w-5 h-5"></i>
+        </button>
+    </div>
+
+    <!-- Actions -->
+    <div class="space-y-3">
         <a href="login.html" 
-           :class="activePath.includes('login.html') ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
-           class="text-center py-3 border border-gray-200 dark:border-gray-700 rounded-xl font-semibold transition-colors">
-           Login
+           :class="activePath.includes('login.html') ? 'bg-gray-200 dark:bg-zinc-700 text-primary' : 'bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-white'"
+           class="flex items-center justify-center py-4 border border-gray-100 dark:border-zinc-800 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:border-primary/30">
+            Login
         </a>
         
         <a href="booknow.html" 
-           class="text-center py-3 bg-primary text-white rounded-xl font-semibold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
-           Book Now
+           class="flex items-center justify-center py-4 bg-primary text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-primary/20 active:scale-95 transition-all">
+            Book Now
         </a>
     </div>
+</div>
 </div>
     </nav>
 <section 
@@ -254,7 +264,7 @@
             <div class="w-full lg:w-1/2 space-y-10">
                 <div class="space-y-6">
                     <span class="text-primary font-black uppercase tracking-[0.4em] text-xs">The Lifestyle</span>
-                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-900 dark:text-white leading-none">
+                    <h2 class="text-4xl md:text-6xl font-semibold tracking-tighter text-gray-900 dark:text-white leading-none">
                         Escape the Noise. <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-sky-400">Find Your Center.</span>
                     </h2>
@@ -303,159 +313,182 @@
         </div>
     </div>
 </section>
-<section class="py-24 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
+<!-- Main Section: Updated to dark:bg-black for true architectural depth -->
+<section class="py-24 bg-gray-50 dark:bg-black transition-colors duration-500 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        <!-- Header Section -->
         <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
             <div class="max-w-2xl">
-                <span class="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 block">Signature Collection</span>
-                <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-900 dark:text-white">
+                <span class="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Signature Collection</span>
+                <h2 class="text-4xl md:text-6xl font-semibold tracking-tighter text-gray-900 dark:text-white">
                     Featured <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-sky-400">Designs.</span>
                 </h2>
             </div>
-            <a href="#" class="hidden md:flex items-center gap-2 font-black text-xs uppercase tracking-widest text-gray-400 hover:text-primary transition-all">
-                View All Series <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <a href="gallery.html" class="hidden md:flex items-center gap-3 font-black text-[10px] uppercase tracking-[0.2em] text-gray-500 hover:text-primary transition-all group">
+                View All Series 
+                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
             </a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             
-            <div class="group relative overflow-hidden rounded-[3rem] bg-white dark:bg-gray-800 shadow-xl transition-all duration-500 hover:-translate-y-2">
+            <!-- Card 1: Studio Pod -->
+            <div class="group relative overflow-hidden rounded-[3rem] bg-white dark:bg-zinc-900 shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent dark:border-zinc-800">
                 <div class="aspect-[3/4] overflow-hidden">
                     <img src="assets/home1" alt="Modern Studio Pod" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </div>
                 
-                <div class="absolute bottom-4 left-4 right-4 p-6 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 rounded-[2rem] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">160 sq ft</p>
-                    <h3 class="text-xl font-bold text-white mb-4">Modern Studio Pod</h3>
-                    <button class="w-full py-3 bg-white text-gray-900 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">
-                        View Design
-                    </button>
+                <!-- Content Overlay: Integrated Contrast for Visibility -->
+                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent">
+                    <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-primary mb-2">160 sq ft</p>
+                        <h3 class="text-xl font-black text-white mb-5">Modern Studio Pod</h3>
+                        <a href="gallery.html" class="block w-full py-3.5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-widest text-center hover:bg-primary hover:text-white transition-all shadow-xl">
+                            View Design
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="group relative overflow-hidden rounded-[3rem] bg-white dark:bg-gray-800 shadow-xl transition-all duration-500 hover:-translate-y-2">
+            <!-- Card 2: Family Container -->
+            <div class="group relative overflow-hidden rounded-[3rem] bg-white dark:bg-zinc-900 shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent dark:border-zinc-800">
                 <div class="aspect-[3/4] overflow-hidden">
                     <img src="assets/Family Container Home" alt="Family Container Home" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </div>
                 
-                <div class="absolute bottom-4 left-4 right-4 p-6 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 rounded-[2rem] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">640 sq ft</p>
-                    <h3 class="text-xl font-bold text-white mb-4">Family Container</h3>
-                    <button class="w-full py-3 bg-white text-gray-900 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">
-                        View Design
-                    </button>
+                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-gray-950 via-gray-900/80 to-transparent">
+                    <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-primary mb-2">640 sq ft</p>
+                        <h3 class="text-xl font-black text-white mb-5">Family Container</h3>
+                        <a href="gallery.html" class="block w-full py-3.5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-widest text-center hover:bg-primary hover:text-white transition-all shadow-xl">
+                            View Design
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="group relative overflow-hidden rounded-[3rem] bg-white dark:bg-gray-800 shadow-xl transition-all duration-500 hover:-translate-y-2">
+            <!-- Card 3: Luxury Villa -->
+            <div class="group relative overflow-hidden rounded-[3rem] bg-white dark:bg-zinc-900 shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent dark:border-zinc-800">
                 <div class="aspect-[3/4] overflow-hidden">
-                    <img src="assets/Luxury Tiny Villa" alt="Luxury Tiny Villa" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <img src="assets/Luxury Tiny House" alt="Luxury Tiny Villa" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </div>
                 
-                <div class="absolute bottom-4 left-4 right-4 p-6 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 rounded-[2rem] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">320 sq ft</p>
-                    <h3 class="text-xl font-bold text-white mb-4">Luxury Tiny Villa</h3>
-                    <button class="w-full py-3 bg-white text-gray-900 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">
-                        View Design
-                    </button>
+                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent">
+                    <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-primary mb-2">320 sq ft</p>
+                        <h3 class="text-xl font-black text-white mb-5">Luxury Tiny Villa</h3>
+                        <a href="gallery.html" class="block w-full py-3.5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-widest text-center hover:bg-primary hover:text-white transition-all shadow-xl">
+                            View Design
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="group relative overflow-hidden rounded-[3rem] bg-white dark:bg-gray-800 shadow-xl transition-all duration-500 hover:-translate-y-2">
+            <!-- Card 4: Airbnb Cabin -->
+            <div class="group relative overflow-hidden rounded-[3rem] bg-white dark:bg-zinc-900 shadow-xl transition-all duration-500 hover:-translate-y-2 border border-transparent dark:border-zinc-800">
                 <div class="aspect-[3/4] overflow-hidden">
                     <img src="assets/Airbnb Cabin" alt="Airbnb Cabin" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 </div>
                 
-                <div class="absolute bottom-4 left-4 right-4 p-6 bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/20 rounded-[2rem] transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-1">240 sq ft</p>
-                    <h3 class="text-xl font-bold text-white mb-4">Airbnb Cabin</h3>
-                    <button class="w-full py-3 bg-white text-gray-900 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">
-                        View Design
-                    </button>
+                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-gray-950 via-gray-950/80 to-transparent">
+                    <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-primary mb-2">240 sq ft</p>
+                        <h3 class="text-xl font-black text-white mb-5">Airbnb Cabin</h3>
+                        <a href="gallery.html" class="block w-full py-3.5 bg-white text-gray-900 rounded-2xl font-black text-[10px] uppercase tracking-widest text-center hover:bg-primary hover:text-white transition-all shadow-xl">
+                            View Design
+                        </a>
+                    </div>
                 </div>
             </div>
 
         </div>
 
+        <!-- Mobile CTA -->
         <div class="mt-12 md:hidden">
             <a href="gallery.html">
-                  <button class="w-full py-5 bg-gray-900 text-white dark:bg-white dark:text-gray-900 rounded-2xl font-black uppercase tracking-widest">
+                  <button class="w-full py-5 bg-gray-900 text-white dark:bg-white dark:text-gray-900 rounded-2xl font-black uppercase text-[10px] tracking-[0.2em] shadow-2xl shadow-primary/20">
                 Explore Full Gallery
             </button>
             </a>
-          
         </div>
     </div>
 </section>
-<section class="py-24 bg-white dark:bg-gray-950 transition-colors duration-500 overflow-hidden">
+<!-- Main Section: Updated to dark:bg-black for maximum contrast and depth -->
+<section class="py-24 bg-white dark:bg-black transition-colors duration-500 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
             
+            <!-- Left Side: Content -->
             <div class="w-full lg:w-5/12 space-y-8">
-                <div class="space-y-4">
-                    <span class="text-primary font-black uppercase tracking-[0.3em] text-xs">Bespoke Engineering</span>
-                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-900 dark:text-white leading-none">
+                <div class="space-y-6">
+                    <span class="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Bespoke Engineering</span>
+                    <h2 class="text-4xl md:text-6xl lg:text-6xl font-semibold tracking-tighter text-gray-900 dark:text-white leading-[0.95]">
                         Designed <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-sky-400">Around You.</span>
                     </h2>
-                    <p class="text-lg text-gray-500 dark:text-gray-400 font-medium leading-relaxed">
+                    <p class="text-lg text-gray-500 dark:text-zinc-400 font-medium leading-relaxed max-w-md">
                         We don't believe in "one size fits all." Your home should be a reflection of your personality, engineered to your exact specifications.
                     </p>
                 </div>
 
                 <div class="pt-4">
-                    <a href="booknow.html" class="inline-flex items-center gap-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary dark:hover:bg-primary hover:text-white transition-all shadow-xl shadow-gray-200 dark:shadow-none">
+                    <a href="booknow.html" class="inline-flex items-center gap-4 bg-gray-900 dark:bg-white text-white dark:text-black px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all shadow-2xl active:scale-95">
                         Start Your Design
                         <i data-lucide="pen-tool" class="w-4 h-4"></i>
                     </a>
                 </div>
             </div>
 
+            <!-- Right Side: Grid Features -->
             <div class="w-full lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-6 relative">
                 
-                <div class="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-transparent hover:border-primary/30 transition-all group">
-                    <div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                        <i data-lucide="layers" class="w-6 h-6 text-primary"></i>
+                <!-- Card 1: Customizable -->
+                <div class="p-8 bg-gray-50 dark:bg-zinc-900 rounded-[2.5rem] border border-transparent dark:border-zinc-800 hover:border-primary/40 transition-all group">
+                    <div class="w-14 h-14 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:bg-primary transition-all duration-500">
+                        <i data-lucide="layers" class="w-6 h-6 text-primary group-hover:text-white"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Fully Customizable</h4>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                        Move walls, add glass, or stack units and  Our modular system  will be is a canvas for your ideas.
+                    <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">Fully Customizable</h4>
+                    <p class="text-sm text-gray-500 dark:text-zinc-500 leading-relaxed font-medium">
+                        Move walls, add glass, or stack units. Our modular system is a canvas for your architectural ideas.
                     </p>
                 </div>
 
-                <div class="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-transparent hover:border-primary/30 transition-all group md:translate-y-8">
-                    <div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                        <i data-lucide="palette" class="w-6 h-6 text-primary"></i>
+                <!-- Card 2: Themes -->
+                <div class="p-8 bg-gray-50 dark:bg-zinc-900 rounded-[2.5rem] border border-transparent dark:border-zinc-800 hover:border-primary/40 transition-all group md:translate-y-12">
+                    <div class="w-14 h-14 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:bg-primary transition-all duration-500">
+                        <i data-lucide="palette" class="w-6 h-6 text-primary group-hover:text-white"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Interior Themes</h4>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                        Choose from Industrial Raw, Nordic Minimal, or Luxury Modern finishing packages.
+                    <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">Interior Themes</h4>
+                    <p class="text-sm text-gray-500 dark:text-zinc-500 leading-relaxed font-medium">
+                        Choose from Industrial Raw, Nordic Minimal, or Luxury Modern high-end finishing packages.
                     </p>
                 </div>
 
-                <div class="p-8 bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-transparent hover:border-primary/30 transition-all group">
-                    <div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                        <i data-lucide="cpu" class="w-6 h-6 text-primary"></i>
+                <!-- Card 3: Smart -->
+                <div class="p-8 bg-gray-50 dark:bg-zinc-900 rounded-[2.5rem] border border-transparent dark:border-zinc-800 hover:border-primary/40 transition-all group">
+                    <div class="w-14 h-14 bg-white dark:bg-zinc-800 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 group-hover:bg-primary transition-all duration-500">
+                        <i data-lucide="cpu" class="w-6 h-6 text-primary group-hover:text-white"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Smart Integration</h4>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                        Voice-controlled lighting, climate automation, and smart security built into the walls.
+                    <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">Smart Integration</h4>
+                    <p class="text-sm text-gray-500 dark:text-zinc-500 leading-relaxed font-medium">
+                        Voice-controlled lighting, climate automation, and smart security built directly into the steel frame.
                     </p>
                 </div>
 
-                <div class="p-8 bg-primary rounded-[2.5rem] text-white md:translate-y-8 shadow-2xl shadow-primary/20">
-                    <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center mb-6">
+                <!-- Card 4: 3D Visual (Primary Highlight) -->
+                <div class="p-8 bg-primary rounded-[2.5rem] text-white md:translate-y-12 shadow-2xl shadow-primary/30 hover:scale-[1.02] transition-transform cursor-default">
+                    <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6">
                         <i data-lucide="box" class="w-6 h-6 text-white"></i>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">3D Visualization</h4>
-                    <p class="text-sm text-white/80 leading-relaxed">
-                        Walk through your custom design in Virtual Reality before the first weld is made.
+                    <h4 class="text-xl font-black mb-3">3D Visualization</h4>
+                    <p class="text-sm text-white/80 leading-relaxed font-medium">
+                        Walk through your custom design in Virtual Reality before the first weld is even made.
                     </p>
                 </div>
 
             </div>
-
         </div>
     </div>
 </section>
@@ -494,62 +527,69 @@
         </div>
     </div>
 </div>
-<section class="py-24 bg-gray-50 dark:bg-gray-900 transition-colors duration-500 overflow-hidden">
+<!-- Main Section: Updated to dark:bg-black for true depth -->
+<section class="py-24 bg-gray-50 dark:bg-black transition-colors duration-500 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        <!-- Section Header -->
         <div class="text-center max-w-2xl mx-auto mb-20">
-            <span class="text-primary font-black uppercase tracking-[0.3em] text-xs mb-4 block">The Lifecycle</span>
-            <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-900 dark:text-white">
+            <span class="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">The Lifecycle</span>
+            <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-gray-900 dark:text-white leading-none">
                 How It <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-sky-400">Works.</span>
             </h2>
         </div>
 
         <div class="relative">
-            <div class="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-gray-200 dark:bg-gray-800 -translate-y-1/2 z-0"></div>
+            <!-- Connecting Line: Hidden on mobile, visible and refined on Desktop -->
+            <div class="hidden lg:block absolute top-[40px] left-0 w-full h-px bg-gray-200 dark:bg-zinc-800 z-0"></div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-8 relative z-10">
                 
+                <!-- Phase 01 -->
                 <div class="group relative flex flex-col items-center text-center">
-                    <div class="w-20 h-20 bg-white dark:bg-gray-800 rounded-3xl flex items-center justify-center shadow-xl border-2 border-transparent group-hover:border-primary transition-all duration-500 mb-6 bg-white z-10">
+                    <div class="w-20 h-20 bg-white dark:bg-zinc-900 rounded-[2rem] flex items-center justify-center shadow-xl border-2 border-transparent group-hover:border-primary transition-all duration-500 mb-8 z-10">
                         <i data-lucide="message-square" class="w-8 h-8 text-primary"></i>
                     </div>
-                    <div class="space-y-2">
-                        <span class="text-[10px] font-black text-primary uppercase tracking-widest">Phase 01</span>
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-white">Consultation</h4>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 max-w-[200px]">Initial meeting to understand your vision and budget.</p>
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Phase 01</span>
+                        <h4 class="text-xl font-black text-gray-900 dark:text-white">Consultation</h4>
+                        <p class="text-sm font-medium text-gray-500 dark:text-zinc-500 max-w-[220px] leading-relaxed">Initial meeting to understand your vision, site requirements, and budget.</p>
                     </div>
                 </div>
 
+                <!-- Phase 02 -->
                 <div class="group relative flex flex-col items-center text-center">
-                    <div class="w-20 h-20 bg-white dark:bg-gray-800 rounded-3xl flex items-center justify-center shadow-xl border-2 border-transparent group-hover:border-primary transition-all duration-500 mb-6 bg-white z-10">
+                    <div class="w-20 h-20 bg-white dark:bg-zinc-900 rounded-[2rem] flex items-center justify-center shadow-xl border-2 border-transparent group-hover:border-primary transition-all duration-500 mb-8 z-10">
                         <i data-lucide="pen-tool" class="w-8 h-8 text-primary"></i>
                     </div>
-                    <div class="space-y-2">
-                        <span class="text-[10px] font-black text-primary uppercase tracking-widest">Phase 02</span>
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-white">Design</h4>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 max-w-[200px]">3D renders and architectural blueprints finalized.</p>
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Phase 02</span>
+                        <h4 class="text-xl font-black text-gray-900 dark:text-white">Design</h4>
+                        <p class="text-sm font-medium text-gray-500 dark:text-zinc-500 max-w-[220px] leading-relaxed">Bespoke 3D renders and architectural blueprints finalized for your approval.</p>
                     </div>
                 </div>
 
+                <!-- Phase 03 -->
                 <div class="group relative flex flex-col items-center text-center">
-                    <div class="w-20 h-20 bg-white dark:bg-gray-800 rounded-3xl flex items-center justify-center shadow-xl border-2 border-transparent group-hover:border-primary transition-all duration-500 mb-6 bg-white z-10">
+                    <div class="w-20 h-20 bg-white dark:bg-zinc-900 rounded-[2rem] flex items-center justify-center shadow-xl border-2 border-transparent group-hover:border-primary transition-all duration-500 mb-8 z-10">
                         <i data-lucide="hammer" class="w-8 h-8 text-primary"></i>
                     </div>
-                    <div class="space-y-2">
-                        <span class="text-[10px] font-black text-primary uppercase tracking-widest">Phase 03</span>
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-white">Build</h4>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 max-w-[200px]">Precision fabrication in our controlled factory facility.</p>
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Phase 03</span>
+                        <h4 class="text-xl font-black text-gray-900 dark:text-white">Build</h4>
+                        <p class="text-sm font-medium text-gray-500 dark:text-zinc-500 max-w-[220px] leading-relaxed">Precision steel fabrication in our climate-controlled factory facility.</p>
                     </div>
                 </div>
 
+                <!-- Phase 04 -->
                 <div class="group relative flex flex-col items-center text-center">
-                    <div class="w-20 h-20 bg-white dark:bg-gray-800 rounded-3xl flex items-center justify-center shadow-xl border-2 border-transparent group-hover:border-primary transition-all duration-500 mb-6 bg-white z-10">
+                    <div class="w-20 h-20 bg-white dark:bg-zinc-900 rounded-[2rem] flex items-center justify-center shadow-xl border-2 border-transparent group-hover:border-primary transition-all duration-500 mb-8 z-10">
                         <i data-lucide="truck" class="w-8 h-8 text-primary"></i>
                     </div>
-                    <div class="space-y-2">
-                        <span class="text-[10px] font-black text-primary uppercase tracking-widest">Phase 04</span>
-                        <h4 class="text-xl font-bold text-gray-900 dark:text-white">Deliver</h4>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 max-w-[200px]">Pan-India shipping and seamless on-site installation.</p>
+                    <div class="space-y-3">
+                        <span class="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Phase 04</span>
+                        <h4 class="text-xl font-black text-gray-900 dark:text-white">Deliver</h4>
+                        <p class="text-sm font-medium text-gray-500 dark:text-zinc-500 max-w-[220px] leading-relaxed">Pan-India logistics and rapid, seamless on-site installation.</p>
                     </div>
                 </div>
 
@@ -562,7 +602,7 @@
         
         <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-8 mb-16 text-center md:text-left">
             <div class="max-w-xl">
-                <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4 text-gray-900 dark:text-white leading-none">
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4 text-gray-900 dark:text-white leading-none">
                     Voices of <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-sky-400">Homeowners</span>
                 </h2>
                 <p class="text-gray-500 dark:text-gray-400 font-medium text-lg">
@@ -651,116 +691,127 @@
         </div>
     </div>
 </section>
-<section class="py-24 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+<!-- Main Section: Updated to dark:bg-black for maximum architectural depth -->
+<section class="py-24 bg-gray-50 dark:bg-black transition-colors duration-500 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <span class="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Investment Structure</span>
+            <h2 class="text-4xl md:text-6xl font-black tracking-tighter mb-4 text-gray-900 dark:text-white">
                 Simple, Transparent <span class="text-primary">Pricing</span>
             </h2>
-            <p class="text-gray-500 dark:text-gray-400 font-medium">
+            <p class="text-gray-500 dark:text-zinc-400 font-medium">
                 Choose the foundation for your future. No hidden fees, just high-quality modular living.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-center">
             
-            <div class="bg-white dark:bg-gray-800 p-6 lg:p-8 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-700 hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
+            <!-- Basic Plan -->
+            <div class="bg-white dark:bg-zinc-900 p-8 lg:p-10 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-zinc-800 hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
                 <div class="mb-8">
-                    <h3 class="text-xl font-bold mb-2">Basic</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Perfect for studios & guest houses.</p>
+                    <h3 class="text-xl font-black mb-2 text-gray-900 dark:text-white uppercase tracking-tight">Basic</h3>
+                    <p class="text-xs font-medium text-gray-500 dark:text-zinc-500">Perfect for studios & guest houses.</p>
                 </div>
                 <div class="mb-8">
-                    <span class="text-4xl font-black">₹12L</span>
-                    <span class="text-gray-400 text-sm">/ starting from</span>
+                    <span class="text-4xl font-black text-gray-900 dark:text-white">₹12L</span>
+                    <span class="text-gray-400 dark:text-zinc-600 text-xs font-bold uppercase ml-1">starting</span>
                 </div>
-                <ul class="space-y-4 mb-10 flex-grow">
-                    <li class="flex items-center gap-3 text-sm">
-                        <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                <ul class="space-y-5 mb-10 flex-grow">
+                    <li class="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-zinc-300">
+                        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         20ft Single Container
                     </li>
-                    <li class="flex items-center gap-3 text-sm text-gray-400 italic">
+                    <li class="flex items-center gap-3 text-sm font-medium text-zinc-400 italic opacity-50">
                         <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>
                         Solar Panel Ready
                     </li>
-                    <li class="flex items-center gap-3 text-sm">
-                        <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    <li class="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-zinc-300">
+                        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         Standard Insulation
                     </li>
                 </ul>
-                <button class="w-full py-4 rounded-2xl border-2 border-gray-100 dark:border-gray-700 font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">Choose Basic</button>
+                <button class="w-full py-4 rounded-2xl border-2 border-gray-100 dark:border-zinc-800 text-gray-900 dark:text-white font-black uppercase text-[10px] tracking-widest hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">Choose Basic</button>
             </div>
 
-            <div class="bg-white dark:bg-gray-800 p-8 lg:p-10 rounded-[2.5rem] shadow-2xl border-2 border-primary relative transform xl:scale-110 z-10 transition-all duration-300 h-full flex flex-col">
-                <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-1 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap">
+            <!-- Standard Plan (Featured) -->
+            <div class="bg-white dark:bg-zinc-900 p-10 lg:p-12 rounded-[3rem] shadow-2xl border-2 border-primary relative transform lg:scale-105 z-10 transition-all duration-300 h-full flex flex-col">
+                <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap shadow-xl shadow-primary/20">
                     Most Popular
                 </div>
                 <div class="mb-8">
-                    <h3 class="text-2xl font-bold mb-2">Standard</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">The ideal family setup.</p>
+                    <h3 class="text-2xl font-black mb-2 text-gray-900 dark:text-white uppercase tracking-tight">Standard</h3>
+                    <p class="text-xs font-medium text-gray-500 dark:text-zinc-500">The ideal family setup.</p>
                 </div>
                 <div class="mb-8">
                     <span class="text-5xl font-black text-primary">₹24L</span>
-                    <span class="text-gray-400 text-sm">/ starting from</span>
+                    <span class="text-gray-400 dark:text-zinc-600 text-xs font-bold uppercase ml-1">starting</span>
                 </div>
-                <ul class="space-y-4 mb-10 flex-grow">
-                    <li class="flex items-center gap-3 text-sm">
-                        <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                <ul class="space-y-5 mb-10 flex-grow">
+                    <li class="flex items-center gap-3 text-sm font-black text-gray-900 dark:text-white">
+                        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         2x 40ft Combined Units
                     </li>
-                    <li class="flex items-center gap-3 text-sm">
-                        <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    <li class="flex items-center gap-3 text-sm font-black text-gray-900 dark:text-white">
+                        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         Smart Home Integration
                     </li>
-                    <li class="flex items-center gap-3 text-sm">
-                        <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    <li class="flex items-center gap-3 text-sm font-black text-gray-900 dark:text-white">
+                        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         Premium Wood Decking
                     </li>
                 </ul>
-                <button class="w-full py-4 rounded-2xl bg-primary text-white font-bold shadow-xl shadow-primary/30 hover:scale-105 transition-transform">Choose Standard</button>
+                <button class="w-full py-5 rounded-2xl bg-primary text-white font-black uppercase text-xs tracking-widest shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all">Choose Standard</button>
             </div>
 
-            <div class="bg-white dark:bg-gray-800 p-6 lg:p-8 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-gray-700 hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
+            <!-- Premium Plan -->
+            <div class="bg-white dark:bg-zinc-900 p-8 lg:p-10 rounded-[2.5rem] shadow-xl border border-gray-100 dark:border-zinc-800 hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
                 <div class="mb-8">
-                    <h3 class="text-xl font-bold mb-2">Premium</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Luxury architectural design.</p>
+                    <h3 class="text-xl font-black mb-2 text-gray-900 dark:text-white uppercase tracking-tight">Premium</h3>
+                    <p class="text-xs font-medium text-gray-500 dark:text-zinc-500">Luxury architectural design.</p>
                 </div>
                 <div class="mb-8">
-                    <span class="text-4xl font-black">₹45L</span>
-                    <span class="text-gray-400 text-sm">/ starting from</span>
+                    <span class="text-4xl font-black text-gray-900 dark:text-white">₹45L</span>
+                    <span class="text-gray-400 dark:text-zinc-600 text-xs font-bold uppercase ml-1">starting</span>
                 </div>
-                <ul class="space-y-4 mb-10 flex-grow">
-                    <li class="flex items-center gap-3 text-sm">
-                        <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                <ul class="space-y-5 mb-10 flex-grow">
+                    <li class="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-zinc-300">
+                        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         Fully Bespoke Multi-Level
                     </li>
-                    <li class="flex items-center gap-3 text-sm">
-                        <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    <li class="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-zinc-300">
+                        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         Off-Grid Solar System
                     </li>
-                    <li class="flex items-center gap-3 text-sm">
-                        <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    <li class="flex items-center gap-3 text-sm font-medium text-gray-700 dark:text-zinc-300">
+                        <svg class="w-5 h-5 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         Glass Curtain Walls
                     </li>
                 </ul>
-                <button class="w-full py-4 rounded-2xl border-2 border-gray-100 dark:border-gray-700 font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">Choose Premium</button>
+                <button class="w-full py-4 rounded-2xl border-2 border-gray-100 dark:border-zinc-800 text-gray-900 dark:text-white font-black uppercase text-[10px] tracking-widest hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">Choose Premium</button>
             </div>
 
         </div>
 
-        <div class="mt-16 text-center">
-            <a href="pricing.html" class="inline-flex items-center gap-2 text-primary font-black uppercase tracking-widest hover:gap-4 transition-all">
+        <!-- Full Pricing CTA -->
+        <div class="mt-20 text-center">
+            <a href="pricing.html" class="inline-flex items-center gap-3 text-primary font-black uppercase text-[10px] tracking-[0.3em] group transition-all">
                 View Full Pricing Details 
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
             </a>
         </div>
     </div>
 </section>
 
-<section class="py-20 bg-white dark:bg-gray-950 transition-colors duration-500">
+<!-- Main Section: Updated to dark:bg-black for consistency with the full page -->
+<section class="py-20 bg-white dark:bg-black transition-colors duration-500 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative overflow-hidden rounded-[3rem] bg-primary p-10 md:p-20 text-center shadow-2xl shadow-primary/30">
+        
+        <!-- CTA Container: Flips from Primary to Zinc-900 in Dark Mode -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-primary dark:bg-zinc-900 p-10 md:p-20 text-center shadow-2xl shadow-primary/30 dark:shadow-none border border-transparent dark:border-zinc-800 transition-all duration-500">
             
+            <!-- Grid Pattern: Subtle technical detail -->
             <div class="absolute inset-0 opacity-10 pointer-events-none">
                 <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                     <pattern id="cta-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -770,25 +821,33 @@
                 </svg>
             </div>
 
+            <!-- Background Decorative Glow (Dark Mode Only) -->
+            <div class="hidden dark:block absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-primary/20 rounded-full blur-[100px]"></div>
+
             <div class="relative z-10 max-w-3xl mx-auto space-y-8">
-                <h2 class="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[0.9]">
-                    Your Future Home <br> Starts Here.
+                <!-- Headline -->
+                <h2 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.95]">
+                    Your Future Home <br> 
+                    <span class="dark:text-primary">Starts Here.</span>
                 </h2>
                 
-                <p class="text-white/80 text-lg md:text-xl font-medium">
+                <!-- Subtext -->
+                <p class="text-white/80 dark:text-zinc-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
                     Ready to trade your mortgage for freedom? Let's design something incredible together.
                 </p>
 
+                <!-- Buttons -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                    <a href="booknow.html" class="w-full sm:w-auto bg-white text-primary px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all">
+                    <a href="booknow.html" class="w-full sm:w-auto bg-white dark:bg-primary text-primary dark:text-white px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all">
                         Book Now
                     </a>
-                    <a href="contact.html" class="w-full sm:w-auto bg-gray-900/20 backdrop-blur-md border border-white/30 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-900/40 transition-all">
+                    <a href="contact.html" class="w-full sm:w-auto bg-gray-900/20 dark:bg-zinc-800/50 backdrop-blur-md border border-white/30 dark:border-zinc-700 text-white px-10 py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-gray-900/40 dark:hover:bg-zinc-800 transition-all">
                         Talk to Expert
                     </a>
                 </div>
 
-                <p class="text-[10px] font-black uppercase tracking-[0.4em] text-white/50 pt-4">
+                <!-- Footer Tag -->
+                <p class="text-[9px] font-black uppercase tracking-[0.4em] text-white/40 dark:text-zinc-600 pt-6">
                     VEXA TECH | Precision Engineering India
                 </p>
             </div>
